@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Exercise</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Generate Exercise</h1>
+        <form method="POST" action="{{ url_for('generate_exercise') }}">
+            <div class="form-group">
+                <label for="exercise_type">Do you want cardio exercise, strength exercise, or flexibility exercise?</label>
+                <select class="form-control" id="exercise_type" name="exercise_type">
+                    <option value="cardio">Cardio</option>
+                    <option value="strength">Strength</option>
+                    <option value="flexibility">Flexibility</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="workout_duration">How long do you plan on working out today (in minutes)?</label>
+                <input type="number" class="form-control" id="workout_duration" name="workout_duration" required>
+            </div>
+            <div class="form-group">
+                <label for="intensity">How intense would you like your workout to be?</label>
+                <select class="form-control" id="intensity" name="intensity">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Generate Workout</button>
+            <a href="{{ url_for('task_manager') }}" class="btn btn-secondary ml-2">Back</a>
+        </form>
+        {% if workout %}
+            <h2 class="mt-5">Recommended Workout</h2>
+            <p>{{ workout }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
